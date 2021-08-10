@@ -24,12 +24,15 @@ public class CityUtils {
         cities.forEach(System.out::println);
     }
 
-    public static void sortingPrintByOneParameters(List<City> cities) {
+    public static void sortingByOneParameters(List<City> cities) {
         cities.sort(Comparator.comparing(City::getName));
-        cities.forEach(System.out::println);
     }
 
-    public static void sortingPrintByTwoParameters(List<City> cities) {
+    public static void sortingByOneParametersV2(List<City> cities) {
+        cities.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+    }
+
+    public static void sortingByTwoParameters(List<City> cities) {
         cities.sort((p1, p2) -> {
             if (p1.getDistrict().compareTo(p2.getDistrict()) != 0) {
                 return p1.getDistrict().compareTo(p2.getDistrict());
@@ -37,7 +40,10 @@ public class CityUtils {
                 return p1.getName().compareTo(p2.getName());
             }
         });
-        cities.forEach(System.out::println);
+    }
+
+    public static void sortingByTwoParametersV2(List<City> cities) {
+        cities.sort(Comparator.comparing(City::getDistrict).thenComparing(City::getName));
     }
 
     private static City parse(String line) {
