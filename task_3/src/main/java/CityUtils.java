@@ -61,16 +61,8 @@ public class CityUtils {
         return new City(number, name, region, district, population, foundation);
     }
 
-    public static City[] arrayCreation() {
-        List<City> cities = parse();
-        City[] city = new City[cities.size()];
-        for (int i = 0; i < cities.size(); ++i) {
-            city[i] = new City(cities.get(i).getNumber(), cities.get(i).getPopulation());
-        }
-        return city;
-    }
-    public static void printMaxPopulation(City[] cities) {
-        City maxCity = Arrays.stream(cities).max(Comparator.comparing(City::getPopulation)).get();
+    public static void printMaxPopulation(List<City> cities) {
+        City maxCity = cities.stream().max(Comparator.comparing(City::getPopulation)).get();
         System.out.println(maxCity.getNumber() + " = " + maxCity.getPopulation());
     }
 }
